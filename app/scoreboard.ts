@@ -1,4 +1,5 @@
 import { Result } from './result';
+import * as _ from "lodash";
 
 export class Scoreboard {
 
@@ -6,15 +7,14 @@ export class Scoreboard {
 
     addResult(newResult: Result): void {
         this.results.push(newResult);
+        let allCapsName: string = _.upperCase(newResult.playerName);
+        console.log(`${allCapsName}: ${newResult.score}`);
     }
 
     updateScoreboard(): void {
         let output: string = '<h2>Scoreboard</h2>';
-        console.log(this.results);
-        console.log('len=' + this.results.length);
         for (let index=0; index < this.results.length; index++) {
             const result: Result = this.results[index];
-            console.log('Looping ' + result);
             output+= '<h4>';
             output += result.playerName + ': ' + result.score + '/' + result.problemCount + ' for factor ' + result.factor;
             output += '</h4>';     
